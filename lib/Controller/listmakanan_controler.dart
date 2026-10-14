@@ -3,7 +3,7 @@ import 'package:flutter_application/models/makanan_model.dart';
 
 class ListmakananController extends GetxController {
 
-  List<MakananModel> makananList = [
+  RxList<MakananModel> makananList = [
     MakananModel(
       nama: "Nasi Goreng",
       harga: "Rp 15.000",
@@ -44,5 +44,5 @@ class ListmakananController extends GetxController {
       kategori: "Makanan Utama",
       rating: 5
     )
-  ];
+  ].obs;
 }

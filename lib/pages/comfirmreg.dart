@@ -38,7 +38,7 @@ class Comfirmreg extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 18, 
                       color: Colors.black87,
-                      height: 1.5, // Spasi antar baris agar lebih nyaman dibaca
+                      height: 1.5, 
                     ),
                   ),
                 ),

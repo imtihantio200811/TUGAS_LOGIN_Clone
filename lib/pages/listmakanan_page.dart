@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/routes.dart';
 import 'package:get/get.dart';
 import '../Controller/listmakanan_controler.dart';
 import 'detail_page.dart';
@@ -18,16 +19,27 @@ class Listmakanan extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
-        child: ListView.separated(
+        child: Obx(
+          () => ListView.separated(
           itemCount: controller.makananList.length,
           separatorBuilder: (_, __) => const SizedBox(height: 12),
           itemBuilder: (context, index) {
             
             final makanan = controller.makananList[index];
 
-            return InkWell(
+            return Dismissible(
+                key: ValueKey(makanan.nama),
+                direction: DismissDirection.startToEnd,
+                background: Container(
+                  color: Colors.red,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.only(left: 20),
+                  child: const Icon(Icons.delete, color: Colors.white),
+                ),
+            
+             child: InkWell(
               onTap: () {
-                Get.to(() => DetailPage(), arguments: makanan);
+                Get.to(Routes.detail, arguments: makanan);
               },
               borderRadius: BorderRadius.circular(16),
               child: Card(
@@ -61,7 +73,7 @@ class Listmakanan extends StatelessWidget {
                             );
                           },
                         ),
-                      ), //agar gambar memiliki sudut melengkung
+                      ),
                       const SizedBox(width: 12),
                       Expanded (
                         child: Column(
@@ -126,13 +138,15 @@ class Listmakanan extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ), //agar kolom menyesuaikan lebar yang tersedia atau fleksible
+                      ),
                     ],
                   ),
                 ),
               ),
+             ),
             );
           },
+        ),
         ),
       ),
     );

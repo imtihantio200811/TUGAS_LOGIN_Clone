@@ -22,3 +22,5 @@ class DetailmakananController extends GetxController {
     rating = arguments.rating;
   }
 }
+
+
