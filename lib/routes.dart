@@ -12,7 +12,7 @@ class Routes {
   static const String confirmRegistration = "/confirmRegistration";
   static const String detail = "/detail";
   static const String mainMenuPage = "/mainMenuPage";
-    static const String menuDrawer = "/menu_drawer";
+  static const String menuDrawer = "/menuDrawer";
   //other routes can be added here
 
   // List of pages for GetX navigation
@@ -22,6 +22,6 @@ class Routes {
     GetPage(name: confirmRegistration, page: () => Comfirmreg()),
     GetPage(name: detail, page: () => DetailPage()),
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
-    GetPage(name: menuDrawer, page: ()=> MenuDrawerPage()),
+    GetPage(name: menuDrawer, page: () => MenuDrawerPage()),
   ];
 }
