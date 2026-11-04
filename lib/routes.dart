@@ -5,14 +5,18 @@ import 'package:flutter_application/pages/registrasion.dart';
 import 'package:flutter_application/pages/listmakanan_page.dart';
 import 'package:flutter_application/pages/detail_page.dart';
 import 'package:flutter_application/pages/menu_drawer_page.dart';
+import 'package:flutter_application/pages/login_page.dart';
+import 'package:flutter_application/pages/email_login_page.dart';
 
 class Routes {
   static const String listmakanan = "/listmakanan";
   static const String registration = "/registration";
   static const String confirmRegistration = "/confirmRegistration";
+  static const String login = "/login";
   static const String detail = "/detail";
   static const String mainMenuPage = "/mainMenuPage";
   static const String menuDrawer = "/menuDrawer";
+  static const String emailLogin = "/emailLogin";
   //other routes can be added here
 
   // List of pages for GetX navigation
@@ -23,5 +27,7 @@ class Routes {
     GetPage(name: detail, page: () => DetailPage()),
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
     GetPage(name: menuDrawer, page: () => MenuDrawerPage()),
+    GetPage(name: login, page: () => LoginPag()),
+    GetPage(name: emailLogin, page: () => EmailLoginPage()),
   ];
 }
