@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Controller/detailmakanan_controller.dart';
@@ -13,7 +13,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
-        title: const Text('Detail Makanan'),
+        title: const Text('Detail Foto'),
         backgroundColor: Colors.orange.shade700,
         foregroundColor: Colors.white,
       ),
@@ -29,13 +29,13 @@ class DetailPage extends StatelessWidget {
                       width: double.infinity,
                       height: 300,
                       child: Image.network(
-                        controller.gambar,
+                        controller.photo.url,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
                             color: Colors.grey.shade200,
                             child: const Icon(
-                              Icons.fastfood,
+                              Icons.image,
                               size: 60,
                               color: Colors.grey,
                             ),
@@ -60,7 +60,7 @@ class DetailPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
-                              controller.kategori,
+                              'Album ${controller.photo.albumId}',
                               style: TextStyle(
                                 color: Colors.orange.shade700,
                                 fontSize: 12,
@@ -70,7 +70,7 @@ class DetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            controller.nama,
+                            controller.photo.title,
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class DetailPage extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                controller.rating.toString(),
+                                controller.photo.id.toString(),
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
@@ -94,7 +94,7 @@ class DetailPage extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                "4.8 dari 5",
+                                "ID Foto",
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey.shade600,
@@ -104,7 +104,7 @@ class DetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 14),
                           Text(
-                            controller.harga,
+                            'ID Album: ${controller.photo.albumId}',
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -123,7 +123,7 @@ class DetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'Deskripsi Produk',
+                            'Informasi Foto',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -131,7 +131,8 @@ class DetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            controller.deskripsi,
+                            'Foto ini berasal dari album ${controller.photo.albumId}. '
+                            'URL thumbnail: ${controller.photo.thumbnailUrl}',
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.grey.shade700,
@@ -171,7 +172,7 @@ class DetailPage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Tambah Keranjang',
+                        'Foto ${controller.photo.id}',
                         style: TextStyle(
                           color: Colors.orange.shade700,
                           fontWeight: FontWeight.bold,
@@ -192,7 +193,7 @@ class DetailPage extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'Beli Sekarang',
+                        'Lihat Foto',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),

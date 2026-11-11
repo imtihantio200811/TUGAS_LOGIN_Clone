@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/routes.dart';
 import 'package:get/get.dart';
+import '../models/login_model.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
@@ -11,6 +12,8 @@ class LoginController extends GetxController {
 
   // Variabel reaktif untuk loading
   var isLoading = false.obs;
+
+  var loginModel = Rxn<LoginModels>();
 
   // Method Login
   void login() async {
@@ -24,35 +27,37 @@ class LoginController extends GetxController {
       );
     } else {
       try {
-        // Set loading menjadi true
-        isLoading.value = true;
-
-        // URL Endpoint API Login (Sesuaikan dengan URL API backend Anda / Postman)
+        
+        isLoading.value = true; // sebagai tanda di page nya muncul loading widget
         final url = Uri.parse("https://mediadwi.com/api/latihan/login");
 
-        // Request HTTP POST dengan Body
-        final response = await http.post(
-          url,
-          body: {
-            'username': txtUsername.text.toString(),
-            'password': txtPassword.text.toString(),
-          },
-        );
+        final response = await http.post(url, body: {
+          "username" : txtUsername.text.toString(),
+          "password" : txtPassword.text.toString()
+        });
 
         isLoading.value = false;
-        if (response.statusCode == 200) {
-          // kita ambil jsonnya message pindah tampilan ke main
-          // contoh json yang paling sederhana, next pertemuan j
-          final data = jsonDecode(response.body);
-          if (data['status'] == true) {
-            Get.snackbar("berhasil", data['message']);
+        if(response.statusCode == 200){
+          // kita ambil jsonnya message pindah tampilan ke main menu
+          // contoh json yang paling sederhana, next pertemuan json yang kompleks
+          loginModel.value = loginModelsFromJson(response.body);
+          
+          if(loginModel.value?.status == true){
+            Get.snackbar("berhasil", loginModel.value!.message.toString());
+            // pindah ke main menu
+            // get.off karena login nya di close
+            // carilah satu free api (sport db) yang return nya adalah json array
+            // di push ke git jam 10.30 
             Get.offNamed(Routes.mainMenuPage);
-          } else {
-            Get.snackbar("gagal", data['message']);
+          }else{
+            Get.snackbar("gagal", loginModel.value!.message.toString());
           }
-        } else {
+
+        }else{
           Get.snackbar("gagal", "cek internet connection");
         }
+
+
 
       } catch (e) {
         // Tangkap error jika terjadi crash / koneksi terputus

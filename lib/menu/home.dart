@@ -20,7 +20,6 @@ class Home extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: homeMakananController.makananList.length,
               itemBuilder: (context, index) {
-                
                 final makanan = homeMakananController.makananList[index];
 
                 return InkWell(
